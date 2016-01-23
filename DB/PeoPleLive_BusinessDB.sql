@@ -29,6 +29,8 @@ CREATE TABLE News_Pool
       IsTake BIT NOT NULL ,--是否被认领
       IsTop BIT NOT NULL
                 DEFAULT ( 0 ) ,--是否加急置顶
+      TopBeginTime DATETIME ,--置顶开始时间
+      TopEndTime DATETIME ,--置顶截至时间
       TakeUserkey UNIQUEIDENTIFIER ,
       TakeUserName NVARCHAR(20) ,
       TakeMobile VARCHAR(20) ,
@@ -99,4 +101,15 @@ CREATE TABLE New_UpdateLog--修改日志
       CreateDate DATETIME DEFAULT ( GETDATE() )
                           NOT NULL
     )
-	 
+CREATE TABLE New_BlockingMoney--冻结的媒体人金额
+    (
+      Id INT PRIMARY KEY
+             IDENTITY(1, 1) ,
+      UserKey UNIQUEIDENTIFIER NOT NULL ,
+      PoolId INT FOREIGN KEY REFERENCES News_Pool ( Id ) ,
+      BlockAmount MONEY NOT NULL ,
+      FreeAmount MONEY NOT NULL ,
+      IsBlock BIT NOT NULL ,
+      CreateDate DATETIME NOT NULL
+                          DEFAULT ( GETDATE() )
+    )
