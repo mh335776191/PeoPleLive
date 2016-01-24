@@ -12,7 +12,7 @@ CREATE DATABASE PeoPleLive_BusinessDB ON
 NAME='PeoPleLive_BusinessDB_log',
 FILENAME='D:\PeoPleLive\DB\PeoPleLive_BusinessDB.log',
 SIZE=2MB
-)
+) 
 
 CREATE TABLE News_Pool
     (
